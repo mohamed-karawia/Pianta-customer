@@ -105,6 +105,7 @@ export default {
       list-style: none;
       display: flex;
       flex-direction: column;
+      
 
       @media only screen and (max-width: 500px) {
         overflow-x: scroll;
@@ -134,30 +135,36 @@ export default {
         background-color: $primary-color;
         //z-index: 1;
         transition: 0.5s all;
+        
       }
 
       &:hover::after {
         width: 100%;
         opacity: 1;
+        
       }
 
       &:hover {
         h3 {
           color: white;
+          
         }
       }
 
       .img {
         width: 3rem;
         height: 3rem;
-        z-index: 2;
+        z-index: 3;
         background-size: cover;
         background-position: center;
         margin-right: 1rem;
+        mix-blend-mode: multiply;
+
       }
 
       h3 {
         font-size: 1.6rem;
+        font-weight: 500;
         z-index: 2;
         text-transform: capitalize;
         transition: 0.5s all;

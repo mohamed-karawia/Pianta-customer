@@ -1,8 +1,8 @@
 <template>
   <nav>
     <div class="upper--nav">
-      <div class="nav--logo">
-        <h1>Fruits</h1>
+      <div class="nav--logo" @click="$router.push('/')">
+        <h1>Pianta</h1>
       </div>
 
       <ul class="nav--list">
@@ -14,8 +14,8 @@
           <router-link to="/">Cart</router-link>
         </li>
 
-        <li class="nav--list__item">
-          <router-link to="/login">Logout</router-link>
+        <li class="nav--list__item" @click="logout">
+          <button to="/login">Logout</button>
         </li>
       </ul>
 
@@ -31,8 +31,8 @@
           <li class="mobile--nav--list__item" @click="showMobileMenu = false">
             <router-link to="/">SHOP</router-link>
           </li>
-          <li class="mobile--nav--list__item" @click="showMobileMenu = false">
-            <router-link to="/">CATEGORIES</router-link>
+          <li class="mobile--nav--list__item" @click="logout">
+            <button>LOGOUT</button>
           </li>
         </ul>
       </div>
@@ -47,6 +47,12 @@ export default {
       showMobileMenu: false,
       showSearch: false,
     };
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+      this.showMobileMenu = false;
+    },
   },
 };
 </script>
@@ -71,6 +77,7 @@ export default {
 .nav--logo {
   color: white;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .mobile--menu {
@@ -114,21 +121,34 @@ export default {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: .5s all;
+    transition: 0.5s all;
 
-    &:hover{
+    &:hover {
       background-color: white;
-      
-      a{
-        color: $primary-color
+
+      a {
+        color: $primary-color;
       }
+
+      button {
+        color: $primary-color;
+      }
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 600;
+      cursor: pointer;
     }
 
     a {
       @include link;
       color: white;
       font-size: 1.8rem;
-      font-weight: 700;
+      font-weight: 600;
     }
   }
 }
@@ -141,7 +161,6 @@ export default {
   margin-right: 1rem;
   cursor: pointer;
   transition: all 0.3s;
-
 
   @media only screen and (min-width: 501px) {
     display: none;
@@ -174,6 +193,15 @@ export default {
     a {
       @include link;
       color: white;
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      font-size: 1.8rem;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
     }
   }
 }

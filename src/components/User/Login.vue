@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <form class="login" @submit.prevent="login">
     <h1>Login</h1>
 
     <div class="input--box">
@@ -13,13 +13,31 @@
     </div>
 
     <div class="login--buttons">
-      <button class="loginButton" @click="$router.push('/')">LOGIN</button>
-      <p>Don't have account ? <span @click="$emit('switchForm')">Signup</span></p>
+      <button
+        type="submit"
+        class="loginButton"
+        v-if="!this.$store.getters.loading"
+        :disabled="this.email === '' || this.password === ''"
+      >
+        LOGIN
+      </button>
+      <Spinner width="5em" height="5em" v-else />
+      <p
+        v-if="this.$store.getters.error !== ''"
+        style="color: red; margin-bottom: 1rem"
+      >
+        {{ this.$store.getters.error }}
+      </p>
+      <p>
+        Don't have account ? <span @click="$emit('switchForm')">Signup</span>
+      </p>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
+import Spinner from "../Spinner/Spinner";
+
 export default {
   data() {
     return {
@@ -28,8 +46,18 @@ export default {
     };
   },
 
+  components: {
+    Spinner,
+  },
+
   methods: {
-    loginLocal() {},
+    login() {
+      const payload = {
+        emailOrPhone: this.email,
+        password: this.password,
+      };
+      this.$store.dispatch("loginLocal", payload);
+    },
   },
 };
 </script>

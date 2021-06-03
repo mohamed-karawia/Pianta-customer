@@ -3,7 +3,7 @@
     <img class="mobileImage" src="../../assets/wallet.svg" alt="wallet" />
 
     <div class="content">
-      <h3>Hello, Mohamed</h3>
+      <h3>Hello, {{ this.$store.state.clientName }}</h3>
       <img class="webImage" src="../../assets/wallet.svg" alt="wallet" />
       <h2>You have 10$ in your wallet</h2>
     </div>
@@ -33,15 +33,17 @@
   }
 
   h3 {
-      font-weight: 500;
-      font-size: 1.5rem;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+
     @media only screen and (max-width: 500px) {
       margin-bottom: 1rem;
     }
   }
 
-  h2{
-      font-weight: 500;
+  h2 {
+    font-weight: 500;
   }
 
   img {
