@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <fruits-categories />
-    <fruits-list />
+    <fruits-list :fruits="products"/>
     <Wallet />
   </div>
 </template>
@@ -19,7 +19,12 @@ export default {
     fruitsList: FruitsList
   },
   created(){
-    console.log(this.$route)
+    this.$store.dispatch('getProducts')
+  },
+  computed: {
+    products(){
+      return this.$store.getters.products
+    }
   }
 }
 </script>
@@ -30,7 +35,7 @@ export default {
   align-items: flex-start;
   justify-content: space-between;
 
-  @media only screen and (max-width: 500px){
+  @media only screen and (max-width: 766px){
       flex-direction: column;
   }
 }

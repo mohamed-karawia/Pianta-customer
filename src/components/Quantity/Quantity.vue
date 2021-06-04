@@ -8,10 +8,8 @@
 
 <script>
 export default {
-    data(){
-        return{
-            quantity: 0
-        }
+    props: {
+        quantity: Number
     }
 }
 </script>

@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import products from './modules/products'
+
 import axios from 'axios';
 import router from '../router/index'
 
@@ -132,6 +134,7 @@ export default new Vuex.Store({
   },
 
   modules: {
+    products
   }
 
 })

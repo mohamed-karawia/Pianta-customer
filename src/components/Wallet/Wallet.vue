@@ -24,7 +24,7 @@
   align-items: center;
   padding: 3rem 0;
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 766px) {
     flex-direction: row;
     align-items: center;
     width: 100%;
@@ -37,7 +37,7 @@
     font-size: 1.5rem;
     text-transform: capitalize;
 
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 766px) {
       margin-bottom: 1rem;
     }
   }
@@ -50,19 +50,19 @@
     width: 20rem;
     margin: 1rem 0;
 
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 766px) {
       width: 10rem;
     }
   }
 
   .webImage {
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 766px) {
       display: none;
     }
   }
 
   .mobileImage {
-    @media only screen and (min-width: 500px) {
+    @media only screen and (min-width: 766px) {
       display: none;
     }
   }

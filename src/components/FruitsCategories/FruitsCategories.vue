@@ -77,7 +77,7 @@ export default {
   box-shadow: 1px 5px 10px 0px rgba(50, 50, 50, 0.158);
   margin-bottom: 4rem;
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 766px) {
       min-width: 100%;
       order: 2;
   }
@@ -107,7 +107,7 @@ export default {
       flex-direction: column;
       
 
-      @media only screen and (max-width: 500px) {
+      @media only screen and (max-width: 766px) {
         overflow-x: scroll;
         flex-direction: row;
       }
@@ -121,7 +121,7 @@ export default {
       position: relative;
       border-bottom: 1px solid rgb(238, 238, 238);
 
-      @media only screen and (max-width: 500px) {
+      @media only screen and (max-width: 766px) {
         width: 100%;
       }
 

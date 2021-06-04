@@ -1,13 +1,17 @@
 <template>
   <div class="fruit">
-    <img :src="fruit.img" />
+    <img :src="`https://gradubanana.herokuapp.com/${fruit.imageUrl}`" />
     <div class="fruit--details">
       <h2>{{ fruit.name }}</h2>
-      <h3>{{ fruit.fresh }}% Fresh</h3>
+      <h3 v-if="fruit.fresh !== 'none'">{{ fruit.fresh }}</h3>
       <h4>{{ fruit.price }}$</h4>
       <div class="fruit--buttons">
-      <Quantity />
-        <button>Add To Cart</button>
+        <Quantity
+          :quantity="quantity"
+          v-on:increaseQuantity="quantity++"
+          v-on:decreaseQuantity="quantity--"
+        />
+        <button @click="addToCart">Add To Cart</button>
       </div>
     </div>
   </div>
@@ -17,17 +21,37 @@
 import Quantity from "../Quantity/Quantity";
 
 export default {
+  data() {
+    return {
+      quantity: 0,
+    };
+  },
   props: {
     fruit: Object,
   },
   components: {
     Quantity,
   },
+  methods:{
+    addToCart(){
+      const payload = {
+        productId: this.fruit._id,
+        amount: this.quantity
+      };
+      this.$store.dispatch('addToCart', payload);
+      this.quantity = 0
+    }
+  },
+  computed:{
+    buttonLoading(){
+      return this.$store.getters.buttonLoading
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-@import '../../sass/global.scss';
+@import "../../sass/global.scss";
 
 .fruit {
   width: 16%;
@@ -40,6 +64,25 @@ export default {
   display: flex;
   flex-direction: column;
   height: 20rem;
+
+  /*@media only screen and (max-width: ) {
+    //border: 1px solid black;
+    padding: 0 2rem;
+  }*/
+
+  @media only screen and (max-width: 840px) {
+    flex-direction: row;
+    min-width: 100%;
+    align-items: center;
+    height: 14rem;
+    padding: 0 2rem;
+  }
+
+  @media only screen and (max-width: 766px) {
+    flex-direction: column;
+    min-width: 25rem;
+    height: 20rem;
+  }
 
   @media only screen and (max-width: 500px) {
     flex-direction: row;
@@ -55,8 +98,8 @@ export default {
     align-self: center;
 
     @media only screen and (max-width: 500px) {
-        margin-right: 1rem;
-        width: 10rem;
+      margin-right: 1rem;
+      width: 10rem;
     }
   }
 
@@ -65,16 +108,15 @@ export default {
     text-transform: capitalize;
     width: 90%;
 
-
     @media only screen and (max-width: 500px) {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 80%;
     }
 
-    h2{
-        font-weight: 500;
+    h2 {
+      font-weight: 500;
     }
 
     h3 {
@@ -82,25 +124,25 @@ export default {
     }
 
     h4 {
-        font-weight: 500;
+      font-weight: 500;
       font-size: 1.5rem;
     }
   }
 
-  &--buttons{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  &--buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-      button{
-          border: none;
-          background-color: $secondary-color;
-          height: 3rem;
-          color: black;
-          padding: 0 1rem;
-          cursor: pointer;
-          //width: 10rem;
-      }
+    button {
+      border: none;
+      background-color: $secondary-color;
+      height: 3rem;
+      color: black;
+      padding: 0 1rem;
+      cursor: pointer;
+      //width: 10rem;
+    }
   }
 }
 </style>
