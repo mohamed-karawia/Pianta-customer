@@ -44,4 +44,42 @@ body {
   @media only screen and (max-width: 500px) {
   }
 }
+
+/******Pagintaion************ */
+.container-class{
+
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    margin-top: 4rem;
+    font-size: 1.4rem;
+    
+    align-self: center;
+    list-style: none;
+    
+}
+
+li.page-class{
+    border: 1px solid $primary-color;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
+    margin: 0 .5rem;
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover{
+      background-color: $primary-color;
+      color: #fff;
+    }
+}
+
+.active-class{
+   background-color: $primary-color;
+   color: #fff;
+}
+
 </style>

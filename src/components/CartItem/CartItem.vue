@@ -20,11 +20,11 @@ export default {
   props: {
     product: Object,
   },
-  methods:{
-      deleteFromCart(id){
-          this.$store.dispatch('deleteFromCart', id)
-      }
-  }
+  methods: {
+    deleteFromCart(id) {
+      this.$store.dispatch("deleteFromCart", id);
+    },
+  },
 };
 </script>
 
@@ -39,6 +39,7 @@ export default {
   margin-top: 1rem;
   border-radius: 10px;
   max-width: 70rem;
+  position: relative;
 
   @media only screen and (max-width: 500px) {
     padding: 1rem 0;
@@ -83,16 +84,22 @@ export default {
   }
 }
 
-    button {
-      border: none;
-      background-color: rgb(243, 43, 43);
-      height: 3rem;
-      color: white;
-      padding: 0 1rem;
-      cursor: pointer;
-      align-self: center;
-      border-radius: 10px;
-      //width: 10rem;
-    }
+button {
+  border: none;
+  background-color: rgb(243, 43, 43);
+  height: 3rem;
+  color: white;
+  padding: 0 1rem;
+  cursor: pointer;
+  align-self: center;
+  border-radius: 10px;
+  position: absolute;
+  right: 0px;
+  //width: 10rem;
+
+  @media only screen and (max-width: 500px) {
+    position: static;
+  }
+}
 </style>
 

@@ -9,15 +9,19 @@
     </div>
     <div class="categories--list">
       <ul class="categories--list__ul">
-        <li class="categories--list__item">
+        <li class="categories--list__item" @click="changeType('all')">
+          <div class="img" :style="`background-image: url(${apple});`"></div>
+          <h3>All</h3>
+        </li>
+        <li class="categories--list__item" @click="changeType('apple')">
           <div class="img" :style="`background-image: url(${apple});`"></div>
           <h3>apple</h3>
         </li>
-        <li class="categories--list__item">
+        <li class="categories--list__item" @click="changeType('banana')">
           <div class="img" :style="`background-image: url(${banana});`"></div>
           <h3>banana</h3>
         </li>
-        <li class="categories--list__item">
+        <li class="categories--list__item" @click="changeType('orange')">
           <div class="img" :style="`background-image: url(${orange});`"></div>
           <h3>orange</h3>
         </li>
@@ -62,6 +66,11 @@ export default {
       orange,
     };
   },
+  methods: {
+    changeType(type) {
+      this.$emit("changeType", type);
+    },
+  },
 };
 </script>
 
@@ -69,7 +78,6 @@ export default {
 @import "../../sass/global.scss";
 
 .categories {
-  width: 20%;
   min-width: 20rem;
   border-radius: 1rem;
   -webkit-box-shadow: 1px 5px 10px 0px rgba(50, 50, 50, 0.158);
@@ -78,8 +86,8 @@ export default {
   margin-bottom: 4rem;
 
   @media only screen and (max-width: 766px) {
-      min-width: 100%;
-      order: 2;
+    min-width: 100%;
+    order: 2;
   }
 
   &--header {
@@ -105,7 +113,6 @@ export default {
       list-style: none;
       display: flex;
       flex-direction: column;
-      
 
       @media only screen and (max-width: 766px) {
         overflow-x: scroll;
@@ -135,19 +142,16 @@ export default {
         background-color: $primary-color;
         //z-index: 1;
         transition: 0.5s all;
-        
       }
 
       &:hover::after {
         width: 100%;
         opacity: 1;
-        
       }
 
       &:hover {
         h3 {
           color: white;
-          
         }
       }
 
@@ -159,7 +163,6 @@ export default {
         background-position: center;
         margin-right: 1rem;
         mix-blend-mode: multiply;
-
       }
 
       h3 {

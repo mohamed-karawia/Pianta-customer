@@ -14,6 +14,9 @@ const getters = {
     products(state){
         return state.products
     },
+    total(state){
+        return state.totalProducts
+    },
     productsLoading(state){
         return state.productsLoading
     },
@@ -25,6 +28,9 @@ const getters = {
     },
     cartLoading(state){
         return state.cartLoading
+    },
+    finalPrice(state){
+        return state.finalPrice
     }
 }
 
@@ -45,13 +51,20 @@ const mutations = {
             return item._id
         }).indexOf(id)
         state.cartItems.splice(index, 1)
+    },
+    checkOut(){
+        console.log('rerer')
     }
 }
 
 const actions = {
-    getProducts({commit, state}){
+    getProducts({commit, state}, filters){
         state.productsLoading = true;
-        axios.get('/client/shop/getProducts?page=1&order=-1&date=1')
+        let link =  `/client/shop/getProducts?page=${filters.page}&order=-1&date=1`
+        if (filters.type && filters.type !== 'all'){
+            link = `/client/shop/getProducts?page=${filters.page}&order=-1&date=1&productType=${filters.type}`
+        }
+        axios.get(link)
         .then(res => {
             console.log(res)
             state.productsLoading = false;
@@ -96,6 +109,17 @@ const actions = {
         .then(res => {
             console.log(res)
             commit('deleteFromCart', id)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    },
+    checkOut({dispatch}, data){
+        axios.post('/client/shop/makeOrder', data)
+        .then(res => {
+            console.log(res)
+            dispatch('getCart')
+            window.alert(res.data.message)
         })
         .catch(err => {
             console.log(err)

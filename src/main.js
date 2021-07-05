@@ -1,12 +1,14 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
 
-import axios from 'axios'
-import Vuelidate from 'vuelidate'
+import axios from 'axios';
+import Vuelidate from 'vuelidate';
+import Paginate from 'vuejs-paginate';
 
-Vue.use(Vuelidate)
+Vue.use(Vuelidate);
+Vue.component('paginate', Paginate);
 
 axios.defaults.baseURL = 'https://gradubanana.herokuapp.com/';
 axios.defaults.headers.common['Authorization'] = `auth ${localStorage.getItem('token')}`

@@ -12,8 +12,7 @@
 
 <style lang="scss" scoped>
 .wallet {
-  width: 20%;
-  min-width: 20rem;
+  min-width: 30rem;
   border-radius: 1rem;
   -webkit-box-shadow: 1px 5px 10px 0px rgba(50, 50, 50, 0.158);
   -moz-box-shadow: 1px 5px 10px 0px rgba(50, 50, 50, 0.158);

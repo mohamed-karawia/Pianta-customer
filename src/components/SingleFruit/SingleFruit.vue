@@ -32,21 +32,25 @@ export default {
   components: {
     Quantity,
   },
-  methods:{
-    addToCart(){
+  methods: {
+    addToCart() {
       const payload = {
         productId: this.fruit._id,
-        amount: this.quantity
+        amount: this.quantity,
       };
-      this.$store.dispatch('addToCart', payload);
-      this.quantity = 0
-    }
+      if (this.quantity === 0) {
+        window.alert("Please Enter Valid Quantity");
+      } else {
+        this.$store.dispatch("addToCart", payload);
+        this.quantity = 0;
+      }
+    },
   },
-  computed:{
-    buttonLoading(){
-      return this.$store.getters.buttonLoading
-    }
-  }
+  computed: {
+    buttonLoading() {
+      return this.$store.getters.buttonLoading;
+    },
+  },
 };
 </script>
 
@@ -54,8 +58,6 @@ export default {
 @import "../../sass/global.scss";
 
 .fruit {
-  width: 16%;
-  min-width: 20rem;
   border-radius: 1rem;
   -webkit-box-shadow: 1px 5px 10px 0px rgba(50, 50, 50, 0.158);
   -moz-box-shadow: 1px 5px 10px 0px rgba(50, 50, 50, 0.158);
@@ -72,7 +74,7 @@ export default {
 
   @media only screen and (max-width: 840px) {
     flex-direction: row;
-    min-width: 100%;
+    //min-width: 100%;
     align-items: center;
     height: 14rem;
     padding: 0 2rem;
@@ -80,13 +82,13 @@ export default {
 
   @media only screen and (max-width: 766px) {
     flex-direction: column;
-    min-width: 25rem;
+    //min-width: 25rem;
     height: 20rem;
   }
 
   @media only screen and (max-width: 500px) {
     flex-direction: row;
-    min-width: 100%;
+    //min-width: 100%;
     align-items: center;
     height: 14rem;
     padding: 0 2rem;

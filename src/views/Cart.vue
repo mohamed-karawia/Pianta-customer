@@ -5,7 +5,7 @@
         <Spinner v-if="cartLoading"/>
         <cart-list :fruits="cartList" v-else/>
         </div>
-    <card-details />
+    <card-details :total="cartTotal"/>
   </div>
 </template>
 
@@ -29,6 +29,9 @@ export default {
       },
       cartLoading(){
           return this.$store.getters.cartLoading
+      },
+      cartTotal(){
+        return this.$store.getters.finalPrice
       }
   }
 };

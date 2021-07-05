@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="fruits-container">
       <single-fruit v-for="fruit in fruits" :key="fruit._id" :fruit="fruit" />
       <Spinner v-if="loading"/>
   </div>
@@ -30,26 +30,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  //border: 1px solid black;
-  width: 55%;
-  display: flex;
-  flex-wrap: wrap;
-  min-width: 20rem;
-
+.fruits-container {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-column-gap: 20px;
+  padding: 1rem;
+ 
   @media only screen and (max-width: 766px) {
     order: 3;
-    min-width: 100%;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    //justify-content: space-around;
-    //flex-wrap: nowrap;
+
   }
 
   @media only screen and (max-width: 500px) {
     order: 3;
-    min-width: 100%;
-    //flex-wrap: nowrap;
+
   }
 }
 </style>
