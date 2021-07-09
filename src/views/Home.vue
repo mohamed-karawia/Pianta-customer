@@ -2,7 +2,8 @@
   <div class="home">
     <div class="container">
       <fruits-categories @changeType="changeType"/>
-      <fruits-list :fruits="products" />
+      <fruits-list :fruits="products" v-if="!loading"/>
+      <Spinner v-if="loading"/>
       <Wallet />
     </div>
     <div class="pagination" v-if="pages > 1">
@@ -28,6 +29,7 @@
 import FruitsCategories from "../components/FruitsCategories/FruitsCategories";
 import Wallet from "../components/Wallet/Wallet";
 import FruitsList from "../components/FruitsList/FruitsList";
+import Spinner from "../components/Spinner/Spinner";
 
 export default {
   data() {
@@ -40,6 +42,7 @@ export default {
     fruitsCategories: FruitsCategories,
     Wallet,
     fruitsList: FruitsList,
+    Spinner,
   },
   created() {
     this.$store.dispatch("getProducts", this.$route.query);
@@ -51,6 +54,9 @@ export default {
     pages() {
       return Math.ceil(this.$store.getters.total / 10);
     },
+    loading(){
+      return this.$store.getters.productsLoading;
+    }
   },
   methods: {
     changePage() {

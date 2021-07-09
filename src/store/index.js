@@ -22,13 +22,16 @@ export default new Vuex.Store({
 
   getters:{
     isAuthenticated (state) {
-      return state.idToken !== null;
+      state.idToken ? true : false;
     },
     loading(state){
       return state.loading;
     },
     error(state){
       return state.error;
+    },
+    token(state){
+      return state.idToken
     }
   },
 
@@ -40,8 +43,9 @@ export default new Vuex.Store({
       state.clientMobile = data.clientMobile;
       state.clientImage = data.image;
       state.clientEmail = data.clientEmail;
+      axios.defaults.headers.common['Authorization'] = `auth ${state.idToken}`
       //console.log(this.getters.isAuthenticated)
-      router.push('/')
+      //router.push('/')
     },
 
     clearAuthData (state) {
@@ -105,6 +109,7 @@ export default new Vuex.Store({
         localStorage.setItem('clientImage', res.data.data.image);
         localStorage.setItem('clientEmail', res.data.data.clientEmail);
         commit('authUser', res.data.data)
+        router.push('/')
       })
       .catch(err => {
         console.log(err.response)

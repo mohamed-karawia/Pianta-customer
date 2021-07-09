@@ -86,7 +86,8 @@ export default {
   margin-bottom: 4rem;
 
   @media only screen and (max-width: 766px) {
-    min-width: 100%;
+    //min-width: unset;
+    width: 100%;
     order: 2;
   }
 

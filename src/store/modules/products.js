@@ -46,10 +46,10 @@ const mutations = {
         state.cartItems = data.cartItems;
         state.finalPrice = data.finalPrice
     },
-    deleteFromCart(state, id){
+    deleteFromCart(state, data){
         let index = state.cartItems.map(item => {
             return item._id
-        }).indexOf(id)
+        }).indexOf(data.productId)
         state.cartItems.splice(index, 1)
     },
     checkOut(){
@@ -102,16 +102,19 @@ const actions = {
             console.log(err.response)
         })        
     },
-    deleteFromCart({commit}, id){
-        axios.delete('/shop/cart/deleteItem', {
-            productId: id
+    deleteFromCart({commit}, data){
+        document.body.style.cursor = "wait"
+        axios.delete('/client/shop/cart/deleteItem', {
+            data: data
         })
         .then(res => {
             console.log(res)
-            commit('deleteFromCart', id)
+            commit('deleteFromCart', data)
+            document.body.style.cursor = "default"
         })
         .catch(err => {
-            console.log(err)
+            console.log(err.response)
+            document.body.style.cursor = "default"
         })
     },
     checkOut({dispatch}, data){

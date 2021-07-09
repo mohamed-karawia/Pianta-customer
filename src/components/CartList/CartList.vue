@@ -2,6 +2,7 @@
     <ul v-if="fruits.length > 0">
         <li v-for="fruit in fruits" :key="fruit._id"><cart-item :product="fruit"/></li>
     </ul>
+    <h2 v-else>Cart is empty</h2>
 </template>
 
 <script>

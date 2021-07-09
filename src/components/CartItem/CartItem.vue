@@ -22,7 +22,10 @@ export default {
   },
   methods: {
     deleteFromCart(id) {
-      this.$store.dispatch("deleteFromCart", id);
+      const data = {
+        productId: id
+      }
+      this.$store.dispatch("deleteFromCart", data);
     },
   },
 };

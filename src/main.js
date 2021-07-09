@@ -11,7 +11,7 @@ Vue.use(Vuelidate);
 Vue.component('paginate', Paginate);
 
 axios.defaults.baseURL = 'https://gradubanana.herokuapp.com/';
-axios.defaults.headers.common['Authorization'] = `auth ${localStorage.getItem('token')}`
+
 
 
 Vue.config.productionTip = false

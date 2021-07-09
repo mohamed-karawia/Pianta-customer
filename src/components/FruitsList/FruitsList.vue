@@ -1,7 +1,7 @@
 <template>
   <div class="fruits-container">
       <single-fruit v-for="fruit in fruits" :key="fruit._id" :fruit="fruit" />
-      <Spinner v-if="loading"/>
+      
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import apple from "../../assets/appleimg.jpeg";
 import orange from "../../assets/orangeimg.jpg";*/
 
 import SingleFruit from "../SingleFruit/SingleFruit";
-import Spinner from "../Spinner/Spinner";
+
 
 export default {
   props: {
@@ -19,12 +19,9 @@ export default {
   },
   components: {
     singleFruit: SingleFruit,
-    Spinner,
+
   },
   computed: {
-    loading() {
-      return this.$store.getters.productsLoading;
-    },
   },
 };
 </script>

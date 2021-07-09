@@ -2,11 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
-import store from '../store/index'
+//import store from '../store/index'
 import Login from '../views/Login.vue'
 import Cart from '../views/Cart.vue'
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -32,22 +32,23 @@ const router = new VueRouter({
   routes
 })
 
+
 router.beforeEach((to, from, next) => {
-  /*if (to.name !== 'Login' && !store.getters.isAuthenticated){
-     next('/login')
-    }
-  else next()*/
-  if(to.name === 'Login'){
-    next()
-  }else{
-    if(store.getters.isAuthenticated === true){
+  const isAuth = localStorage.getItem('token')
+  if (to.name !== 'Login') {
+    if (isAuth) {
       next()
-    }else{
-      console.log(store.getters.isAuthenticated)
+    } else {
       next('/login')
     }
+  } else {
+    if (!isAuth) {
+      next()
+    } else {
+      next('/')
+    }
   }
-
 })
+
 
 export default router
