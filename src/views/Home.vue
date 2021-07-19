@@ -8,7 +8,6 @@
     </div>
     <div class="pagination" v-if="pages > 1">
       <paginate
-        v-model="page"
         :page-count="pages"
         :page-range="3"
         :margin-pages="2"
@@ -34,8 +33,7 @@ import Spinner from "../components/Spinner/Spinner";
 export default {
   data() {
     return {
-      page: this.$route.query.page ? this.$route.query.page : 1,
-      type: this.$route.query.type ? this.$route.query.type : null
+      
     };
   },
   components: {
@@ -59,12 +57,12 @@ export default {
     }
   },
   methods: {
-    changePage() {
+    changePage(page) {
        this.$router.replace({path: '/', query: {
          ...this.$route.query,
-         page: this.page
+         page: page
        }})
-       this.$store.dispatch("getProducts", this.page, this.type);
+       this.$store.dispatch("getProducts", this.$route.query);
     },
     changeType(type){
       this.$router.replace({path: '/', query: {
@@ -81,6 +79,7 @@ export default {
 .home {
   display: flex;
   flex-direction: column;
+  padding-bottom: 3rem;
 }
 .container {
   display: flex;
@@ -93,7 +92,6 @@ export default {
 }
 
 .pagination {
-  border: 1px solid black;
   display: flex;
   justify-content: center;
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="cartItem">
     <img
-      :src="`https://gradubanana.herokuapp.com/${product.product.imageUrl}`"
+      :src="`${product.product.imageUrl}`"
     />
     <div class="fruit--details">
       <h2>{{ product.product.name }}</h2>

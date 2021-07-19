@@ -11,6 +11,10 @@
         </li>
 
         <li class="nav--list__item">
+          <router-link to="/orders">Orders</router-link>
+        </li>
+
+        <li class="nav--list__item">
           <router-link to="/cart">Cart</router-link>
         </li>
 
@@ -27,6 +31,9 @@
         <ul class="mobile--nav--list">
           <li class="mobile--nav--list__item" @click="showMobileMenu = false">
             <router-link to="/">Fruits</router-link>
+          </li>
+          <li class="mobile--nav--list__item" @click="showMobileMenu = false">
+            <router-link to="/orders">Orders</router-link>
           </li>
           <li class="mobile--nav--list__item" @click="showMobileMenu = false">
             <router-link to="/cart">Cart</router-link>

@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-import products from './modules/products'
-
+// Modules
+import products from './modules/products';
+import orders from './modules/orders';
+// Axios and routing
 import axios from 'axios';
 import router from '../router/index'
 
@@ -90,6 +91,7 @@ export default new Vuex.Store({
         localStorage.setItem('clientImage', res.data.data.image);
         localStorage.setItem('clientEmail', res.data.data.clientEmail);
         state.loading = false
+        router.push('/')
       })
       .catch(err => {
         console.log(err.response)
@@ -133,13 +135,14 @@ export default new Vuex.Store({
 
     },
     logout ({commit}) {
-      commit('clearAuthData')
       localStorage.clear();
+      commit('clearAuthData')
     }
   },
 
   modules: {
-    products
+    products,
+    orders
   }
 
 })
