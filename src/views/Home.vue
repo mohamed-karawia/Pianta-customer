@@ -2,7 +2,8 @@
   <div class="home">
     <div class="container">
       <fruits-categories @changeType="changeType"/>
-      <fruits-list :fruits="products" v-if="!loading"/>
+      <fruits-list :fruits="products" v-if="!loading && products.length > 0"/>
+      <h2 v-if="!loading && products.length == 0">No Products Available</h2>
       <Spinner v-if="loading"/>
       <Wallet />
     </div>
@@ -65,6 +66,7 @@ export default {
        this.$store.dispatch("getProducts", this.$route.query);
     },
     changeType(type){
+      window.scroll(0,0)
       this.$router.replace({path: '/', query: {
         ...this.$route.query,
         type: type
@@ -89,6 +91,11 @@ export default {
   @media only screen and (max-width: 766px) {
     flex-direction: column;
   }
+}
+
+h2{
+  font-weight: 400;
+  font-size: 3rem;
 }
 
 .pagination {

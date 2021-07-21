@@ -9,61 +9,71 @@
     </div>
     <div class="categories--list">
       <ul class="categories--list__ul">
-        <li class="categories--list__item" @click="changeType('all')">
-          <div class="img" :style="`background-image: url(${apple});`"></div>
-          <h3>All</h3>
+        <li v-for="(fruit, index) in fruits" :key="index" class="categories--list__item" @click="changeType(fruit.name)">
+          <div class="img" :style="`background-image: url(${fruit.img});`"></div>
+          <h3>{{fruit.name}}</h3>
         </li>
-        <li class="categories--list__item" @click="changeType('apple')">
-          <div class="img" :style="`background-image: url(${apple});`"></div>
-          <h3>apple</h3>
-        </li>
-        <li class="categories--list__item" @click="changeType('banana')">
-          <div class="img" :style="`background-image: url(${banana});`"></div>
-          <h3>banana</h3>
-        </li>
-        <li class="categories--list__item" @click="changeType('orange')">
-          <div class="img" :style="`background-image: url(${orange});`"></div>
-          <h3>orange</h3>
-        </li>
-        <li class="categories--list__item">
-          <div class="img" :style="`background-image: url(${apple});`"></div>
-          <h3>apple</h3>
-        </li>
-        <li class="categories--list__item">
-          <div class="img" :style="`background-image: url(${banana});`"></div>
-          <h3>banana</h3>
-        </li>
-        <li class="categories--list__item">
-          <div class="img" :style="`background-image: url(${orange});`"></div>
-          <h3>orange</h3>
-        </li>
-        <li class="categories--list__item">
-          <div class="img" :style="`background-image: url(${apple});`"></div>
-          <h3>apple</h3>
-        </li>
-        <li class="categories--list__item">
-          <div class="img" :style="`background-image: url(${banana});`"></div>
-          <h3>banana</h3>
-        </li>
-        <li class="categories--list__item">
-          <div class="img" :style="`background-image: url(${orange});`"></div>
-          <h3>orange</h3>
-        </li>
+  
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-import banana from "../../assets/banana.jpeg";
+import all from '../../assets/fruits.png'
+import banana from "../../assets/banana.png";
 import apple from "../../assets/apple.png";
-import orange from "../../assets/orange.jpg";
+import orange from "../../assets/orange.png";
+import acerolas from "../../assets/acerolas.png";
+import apricots from "../../assets/apricots.png";
+import avocados from "../../assets/avocados.png";
+import blackberries from "../../assets/blackberries.png";
+import blueberries from "../../assets/blueberries.png";
+import cantaloupes from "../../assets/cantaloupes.png";
+import coconuts from "../../assets/coconuts.png";
+import figs from "../../assets/figs.png";
+import grapefruits from "../../assets/grapefruits.png";
+import grapes from "../../assets/grapes.png";
+import guava from "../../assets/guava.png";
+import kiwifruit from "../../assets/kiwifruit.png";
+import lemons from "../../assets/lemons.png";
+import peaches from "../../assets/peaches.png";
+import pears from "../../assets/pears.png";
+import pineapple from "../../assets/pineapple.png";
+import pomegranates from "../../assets/pomegranates.png";
+import raspberries from "../../assets/raspberries.png";
+import strawberries from "../../assets/strawberries.png";
+import watermelons from "../../assets/watermelons.png";
+
 export default {
   data() {
     return {
-      banana,
-      apple,
-      orange,
+      fruits: [
+        {name: 'all', img: all},
+        {name: 'apples', img: apple},
+        {name: 'bananas', img: banana},
+        {name: 'oranges', img: orange},
+        {name: 'acerolas', img: acerolas},
+        {name: 'apricots', img: apricots},
+        {name: 'avocados', img: avocados},
+        {name: 'blackberries', img: blackberries},
+        {name: 'blueberries', img: blueberries},
+        {name: 'cantaloupes', img: cantaloupes},
+        {name: 'coconuts', img: coconuts},
+        {name: 'figs', img: figs},
+        {name: 'grapefruits', img: grapefruits},
+        {name: 'grapes', img: grapes},
+        {name: 'guava', img: guava},
+        {name: 'kiwifruit', img: kiwifruit},
+        {name: 'lemons', img: lemons},
+        {name: 'peaches', img: peaches},
+        {name: 'pears', img: pears},
+        {name: 'pineapples', img: pineapple},
+        {name: 'pomegranates', img: pomegranates},
+        {name: 'raspberries', img: raspberries},
+        {name: 'strawberries', img: strawberries},
+        {name: 'watermelons', img: watermelons},
+      ]
     };
   },
   methods: {
@@ -163,7 +173,6 @@ export default {
         background-size: cover;
         background-position: center;
         margin-right: 1rem;
-        mix-blend-mode: multiply;
       }
 
       h3 {

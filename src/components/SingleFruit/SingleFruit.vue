@@ -67,18 +67,6 @@ export default {
   flex-direction: column;
   height: 20rem;
 
-  /*@media only screen and (max-width: ) {
-    //border: 1px solid black;
-    padding: 0 2rem;
-  }*/
-
-  @media only screen and (max-width: 840px) {
-    flex-direction: row;
-    //min-width: 100%;
-    align-items: center;
-    height: 14rem;
-    padding: 0 2rem;
-  }
 
   @media only screen and (max-width: 766px) {
     flex-direction: column;

@@ -66,14 +66,17 @@ li.page-class{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: .5rem;
     margin: 0 .5rem;
     cursor: pointer;
     transition: all .2s;
-
     &:hover{
       background-color: $primary-color;
       color: #fff;
+    }
+
+    a{
+      width: 100%;
+      text-align: center;
     }
 }
 

@@ -1,7 +1,6 @@
 <template>
   <div class="fruits-container">
-      <single-fruit v-for="fruit in fruits" :key="fruit._id" :fruit="fruit" />
-      
+    <single-fruit v-for="fruit in fruits" :key="fruit._id" :fruit="fruit" />
   </div>
 </template>
 
@@ -12,17 +11,14 @@ import orange from "../../assets/orangeimg.jpg";*/
 
 import SingleFruit from "../SingleFruit/SingleFruit";
 
-
 export default {
   props: {
     fruits: Array,
   },
   components: {
     singleFruit: SingleFruit,
-
   },
-  computed: {
-  },
+  computed: {},
 };
 </script>
 
@@ -31,18 +27,18 @@ export default {
   width: 100%;
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fit, 25rem);
   grid-column-gap: 20px;
   padding: 1rem;
- 
+
   @media only screen and (max-width: 766px) {
     order: 3;
-
   }
 
   @media only screen and (max-width: 500px) {
     order: 3;
-
+    padding: 1rem;
+    grid-template-columns: 1fr;
   }
 }
 </style>
