@@ -40,7 +40,7 @@ export default new Vuex.Store({
     authUser(state, data){
       //console.log('triggerd')
       state.idToken = data.token;
-      state.clientName = data .clientName;
+      state.clientName = data.clientName;
       state.clientMobile = data.clientMobile;
       state.clientImage = data.image;
       state.clientEmail = data.clientEmail;
@@ -124,6 +124,7 @@ export default new Vuex.Store({
         token: localStorage.getItem('token'),
         sellerName: localStorage.getItem('clientName'),
         clientMobile: localStorage.getItem('clientMobile'),
+        clientName: localStorage.getItem('clientName'),
         image: localStorage.getItem('clientImage'),
         clientEmail: localStorage.getItem('clientEmail')
     }

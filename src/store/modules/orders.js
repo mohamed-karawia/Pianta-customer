@@ -23,10 +23,7 @@ const mutations = {
 const actions = {
     getOrders({commit, state}, queries){
         state.loading = true;
-        let url = '/client/shop/getOrders'
-        if(queries && queries.type && queries.type !== 'all'){
-            url = `/client/shop/getOrders?type=${queries.type}`
-        }
+        let url = `/client/shop/getOrders?type=${queries.type}`
         axios.get(url)
         .then(res => {
             state.loading = false;

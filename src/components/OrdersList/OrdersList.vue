@@ -1,19 +1,18 @@
 <template>
   <div class="ordersList">
-    <ul v-if="!loading">
+    <ul>
       <li v-for="order in orders.products" :key="order._id">
         <Order :order="order" />
       </li>
     </ul>
-    <Spinner v-else />
-    <h2>Total price: {{ orders.totalPrice }}</h2>
+    <h2>Total price: {{ orders.totalPrice }} L.E</h2>
     <h2>Status: {{ orders.status }}</h2>
   </div>
 </template>
 
 <script>
 import Order from "../Order/Order";
-import Spinner from '../../components/Spinner/Spinner.vue'
+
 
 export default {
   data() {
@@ -25,7 +24,6 @@ export default {
   },
   components: {
     Order,
-    Spinner
   },
   methods: {
     changeType(type){

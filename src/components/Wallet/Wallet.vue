@@ -5,10 +5,26 @@
     <div class="content">
       <h3>Hello, {{ this.$store.state.clientName }}</h3>
       <img class="webImage" src="../../assets/wallet.svg" alt="wallet" />
-      <h2>You have 10$ in your wallet</h2>
+      <h2>You have {{totalCart}} items in your cart</h2>
+      <h2>Price: {{ price }} L.E</h2>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data(){
+    return{
+      totalItems: 0,
+      totalPrice: 0
+    }
+  },
+  props: {
+    totalCart: Number,
+    price: Number
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .wallet {

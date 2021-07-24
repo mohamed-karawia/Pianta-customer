@@ -11,7 +11,7 @@
         </li>
 
         <li class="nav--list__item">
-          <router-link to="/orders">Orders</router-link>
+          <router-link to="/orders?type=started">Orders</router-link>
         </li>
 
         <li class="nav--list__item">
@@ -33,7 +33,7 @@
             <router-link to="/">Fruits</router-link>
           </li>
           <li class="mobile--nav--list__item" @click="showMobileMenu = false">
-            <router-link to="/orders">Orders</router-link>
+            <router-link to="/orders?type=started">Orders</router-link>
           </li>
           <li class="mobile--nav--list__item" @click="showMobileMenu = false">
             <router-link to="/cart">Cart</router-link>

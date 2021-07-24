@@ -11,11 +11,11 @@
     </div>
     <div class="order--detail">
       <h2>price:</h2>
-      <h3>{{order.product.price}}$</h3>
+      <h3>{{order.product.price}} L.E</h3>
     </div>
     <div class="order--detail">
       <h2>Total Price:</h2>
-      <h3>{{order.product.price * order.amount}}$</h3>
+      <h3>{{order.product.price * order.amount}} L.E</h3>
     </div>
   </div>
 </template>

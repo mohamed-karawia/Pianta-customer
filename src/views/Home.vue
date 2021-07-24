@@ -5,7 +5,7 @@
       <fruits-list :fruits="products" v-if="!loading && products.length > 0"/>
       <h2 v-if="!loading && products.length == 0">No Products Available</h2>
       <Spinner v-if="loading"/>
-      <Wallet />
+      <Wallet :totalCart="totalCart" :price="totalPrice"/>
     </div>
     <div class="pagination" v-if="pages > 1">
       <paginate
@@ -45,6 +45,7 @@ export default {
   },
   created() {
     this.$store.dispatch("getProducts", this.$route.query);
+    this.$store.dispatch("getCart");
   },
   computed: {
     products() {
@@ -55,6 +56,12 @@ export default {
     },
     loading(){
       return this.$store.getters.productsLoading;
+    },
+    totalCart(){
+      return Number(this.$store.getters.cartList.length);
+    },
+    totalPrice(){
+      return Number(this.$store.getters.finalPrice);
     }
   },
   methods: {

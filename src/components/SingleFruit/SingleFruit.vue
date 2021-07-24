@@ -3,8 +3,8 @@
     <img :src="`${fruit.imageUrl}`" />
     <div class="fruit--details">
       <h2>{{ fruit.name }}</h2>
-      <h3 v-if="fruit.fresh !== 'none'">{{ fruit.fresh }}</h3>
-      <h4>{{ fruit.price }}$</h4>
+      <h3 v-if="fruit.fresh !== 'none'">{{ fruit.fresh }} fresh</h3>
+      <h4>{{ fruit.price }} L.E</h4>
       <div class="fruit--buttons">
         <Quantity
           :quantity="quantity"

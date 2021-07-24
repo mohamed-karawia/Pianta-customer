@@ -1,21 +1,29 @@
 <template>
   <div class="container">
-    <order-list
-      v-for="(order, index) in orders"
-      :key="index"
-      :orders="order"
-      @changeType="changeType"
-      :loading="loading"
-    />
+    <orders-nav @changeType="changeType"></orders-nav>
+    <Spinner v-if="loading" />
+    <div class="data" v-else>
+      <order-list
+        v-for="(order, index) in orders"
+        :key="index"
+        :orders="order"
+        @changeType="changeType"
+      />
+      <h2 v-if="orders.length == 0">No orders available...</h2>
+    </div>
   </div>
 </template>
 
 <script>
+import ordersNav from "../components/OrdersNav/OrdersNav.vue";
+import Spinner from "../components/Spinner/Spinner.vue";
 import orderList from "../components/OrdersList/OrdersList";
 
 export default {
   components: {
+    ordersNav,
     orderList,
+    Spinner,
   },
   created() {
     this.$store.dispatch("getOrders", this.$route.query);
@@ -51,6 +59,15 @@ export default {
 
   @media only screen and (max-width: 500px) {
     flex-direction: column;
+  }
+
+  h2{
+    font-weight: 400;
+    font-size: 2rem;
+  }
+
+  .data{
+    width: 100%;
   }
 }
 </style>

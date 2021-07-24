@@ -1,9 +1,8 @@
 <template>
     <nav>
         <ul>
-            <li :class="[activeRoute === 'all' ? 'active' : '']" @click="changeType('all')"><h2>All</h2></li>
-            <li :class="[activeRoute === 'started' ? 'active' : '']" @click="changeType('started')"><h2>Pending</h2></li>
-            <li :class="[activeRoute === 'ended' ? 'active' : '']" @click="changeType('ended')"><h2>Arrived</h2></li>
+            <li :class="[activeRoute === 'started' ? 'active' : '']" @click="changeType('started')"><h2>Started</h2></li>
+            <li :class="[activeRoute === 'ended' ? 'active' : '']" @click="changeType('ended')"><h2>Ended</h2></li>
         </ul>
     </nav>
 </template>
@@ -12,7 +11,7 @@
 export default {
     data(){
         return {
-            activeRoute: 'all'
+            activeRoute: 'started'
         }
     },
     methods: {
