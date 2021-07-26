@@ -96,6 +96,7 @@ export default new Vuex.Store({
       .catch(err => {
         console.log(err.response)
         state.loading = false
+        commit('showError', err.response)
       })
     },
 

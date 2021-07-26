@@ -2,8 +2,9 @@
   <div class="container">
     <div class="content">
       <div class="details">
-        <h1>Fruits</h1>
+        <h1>Pianta</h1>
         <h2>your health is the most thing we care about</h2>
+        <h3>Are you a seller ?  <a href="http://localhost:8081/" target="_blank">click here</a></h3>
       </div>
       <div class="form">
         <Login v-if="form === 'login'" @switchForm="switchForm('signup')" />
@@ -60,6 +61,7 @@ export default {
     position: absolute;
     top: 15%;
     max-width: 43%;
+    padding: 1rem 3rem;
 
     @media only screen and (max-width: 500px) {
       max-width: 100%;
@@ -98,6 +100,20 @@ export default {
     font-weight: 400;
     animation-name: slide;
     animation-duration: 1.5s;
+  }
+
+  h3{
+    color: white;
+    font-size: 3rem;
+    text-transform: capitalize;
+    font-weight: 400;
+    animation-name: slide;
+    animation-duration: 1.5s;
+
+    a{
+      color: white;
+      text-decoration: none;
+    }
   }
 }
 

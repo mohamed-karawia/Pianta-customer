@@ -64,6 +64,7 @@ export default {
   h2{
     font-weight: 400;
     font-size: 2rem;
+    margin-bottom: 50vh;
   }
 
   .data{

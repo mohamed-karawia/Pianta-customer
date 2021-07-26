@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <splash v-if="showSplash"/>
     <Navbar v-if="this.$route.name != 'Login'" />
     <router-view />
     <Footer v-if="this.$route.name != 'Login' && !loading && !productsLoading" />
@@ -7,15 +8,25 @@
 </template>
 
 <script>
+import splash from './components/Splash/Splash.vue'
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer.vue";
 export default {
+  data(){
+    return{
+      showSplash: true
+    }
+  },
   components: {
     Navbar,
     Footer,
+    splash
   },
   created() {
     this.$store.dispatch("tryAutoLogin");
+    setTimeout(() => {
+      this.showSplash = false
+    }, 1500);
   },
   computed: {
     loading() {
