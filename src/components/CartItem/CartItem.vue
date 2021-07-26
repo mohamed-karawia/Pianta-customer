@@ -1,5 +1,5 @@
 <template>
-  <div :class="[product.amount <= product.product.quantity ? 'cartItem' : 'cartItem red-border']">
+  <div :class="[product.amount <= product.product.quantity && !product.product.hide ? 'cartItem' : 'cartItem red-border']">
     <img
       :src="`${product.product.imageUrl}`"
     />
