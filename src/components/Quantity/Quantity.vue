@@ -1,15 +1,16 @@
 <template>
     <div class="quantity">
-        <button class="quantity__button" @click="$emit('decreaseQuantity')">&#8722;</button>
+        <button class="quantity__button" @click="$emit('decreaseQuantity')" :disabled="quantity == 0">&#8722;</button>
         <input type="number" :value="quantity">
-        <button class="quantity__button" @click="$emit('increaseQuantity')">&#43;</button>
+        <button class="quantity__button" @click="$emit('increaseQuantity')" :disabled="quantity == stock">&#43;</button>
     </div>
 </template>
 
 <script>
 export default {
     props: {
-        quantity: Number
+        quantity: Number,
+        stock: Number
     }
 }
 </script>

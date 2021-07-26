@@ -4,19 +4,19 @@ $secondary-color: #f7e868;
 
 
 @mixin button {
-    border-radius: 15px;
-    border: none;
-    padding: 10px 30px;
-    font-size: 1.8rem;
-    background-color: $primary-color;
+  border-radius: 15px;
+  border: none;
+  padding: 10px 30px;
+  font-size: 1.8rem;
+  background-color: $primary-color;
 }
 
 @mixin link {
-    cursor: pointer;
-    text-decoration: none;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-@mixin container{
+@mixin container {
   width: 100%;
   //background-color: black;
   padding: 2rem 0;
@@ -26,18 +26,18 @@ $secondary-color: #f7e868;
   //align-items: center;
 }
 
-@mixin h1{
-    font-weight: 100;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+@mixin h1 {
+  font-weight: 100;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
-@mixin h2{
+@mixin h2 {
   font-weight: 100;
   font-size: 2rem;
   letter-spacing: 3px;
 
-  @media only screen and (max-width: 500px){
+  @media only screen and (max-width: 500px) {
     font-size: 1.5rem;
     font-weight: 300;
   }
@@ -55,8 +55,33 @@ $secondary-color: #f7e868;
 }
 
 @mixin loginInput {
-        display: flex;
-        flex-direction: column;
-        margin: 1.5rem 0;
-        width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem 0;
+  width: 70%;
+}
+
+@mixin errorMessage {
+  color: red;
+  text-transform: capitalize;
+  font-size: 1.5rem;
+}
+
+@mixin Alert{
+  background-color: white;
+  padding: 5rem;
+  font-size: 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes alert {
+  0% {
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
 }

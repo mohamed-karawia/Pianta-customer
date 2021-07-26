@@ -39,7 +39,8 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 1rem 3rem;
-
+  height: 100%;
+  
     @media only screen and (max-width: 500px){
         //width: 100%;
     }

@@ -6,6 +6,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Cart from '../views/Cart.vue'
 import Orders from '../views/Orders.vue'
+import Success from '../views/Success.vue';
 
 Vue.use(VueRouter);
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/orders',
     name: 'Orders',
     component: Orders
+  },
+  {
+    path: '/success',
+    name: 'Success',
+    component: Success
   },
 
 ]

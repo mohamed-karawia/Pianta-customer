@@ -1,5 +1,5 @@
 <template>
-  <div class="cartItem">
+  <div :class="[product.amount <= product.product.quantity ? 'cartItem' : 'cartItem red-border']">
     <img
       :src="`${product.product.imageUrl}`"
     />
@@ -8,7 +8,8 @@
       <h3 v-if="product.product.fresh !== 'none'">
         {{ product.product.fresh }} Fresh
       </h3>
-      <h3>{{ product.amount }}</h3>
+      <h3 v-if="product.amount <= product.product.quantity">{{ product.amount }}</h3>
+      <h3 style="color: red" v-else>Out of stock</h3>
       <h4>{{ product.totalPrice }} L.E</h4>
       <button @click="deleteFromCart(product._id)">Delete</button>
     </div>
@@ -104,5 +105,11 @@ button {
     position: static;
   }
 }
+
+
+.red-border{
+  border: 1px solid red;
+}
+
 </style>
 

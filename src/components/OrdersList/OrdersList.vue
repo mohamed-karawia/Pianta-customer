@@ -54,6 +54,7 @@ export default {
       justify-content: center;
       grid-template-columns: repeat(auto-fit, minmax(10rem, 30rem));
       grid-column-gap: 20px;
+      align-items: stretch;
 
       @media only screen and (max-width: 661px){
         grid-template-columns: repeat(1, 1fr);

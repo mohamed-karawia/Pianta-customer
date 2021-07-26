@@ -58,7 +58,7 @@
       </p>
     </div>
 
-        <div
+    <div
       class="input--box"
       style="display: flex; flex-direction: row; justify-content: space-between"
     >
@@ -81,6 +81,15 @@
         />
         Female
       </label>
+    </div>
+
+    <div class="input--box">
+      <label>CITY</label>
+      <select name="city" id="city" v-model="city">
+        <option v-for="city in cities" :key="city" :selected="city == 'Cairo'">
+          {{ city }}
+        </option>
+      </select>
     </div>
 
     <button
@@ -122,7 +131,7 @@ export default {
       confirmPassword: "",
       mobile: "",
       gender: "male",
-      //cities: ["Cairo", "Alexandria", "Portsaid", "Ismailia", "Suez"],
+      cities: ["Cairo", "Alexandria", "Portsaid", "Ismailia", "Suez"],
       city: "Cairo",
     };
   },
@@ -136,8 +145,8 @@ export default {
         password: this.password,
         comfirmPassword: this.confirmPassword,
         code: "2",
-        sex: this.gender
-        //city: this.city,
+        sex: this.gender,
+        city: this.city,
       };
       this.$store.dispatch("registerUser", payload);
     },
@@ -241,9 +250,7 @@ export default {
   }
 
   .error--message {
-    color: red;
-    text-transform: capitalize;
-    font-size: 1.5rem;
+    @include errorMessage;
   }
 }
 </style>

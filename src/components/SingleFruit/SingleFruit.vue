@@ -4,9 +4,11 @@
     <div class="fruit--details">
       <h2>{{ fruit.name }}</h2>
       <h3 v-if="fruit.fresh !== 'none'">{{ fruit.fresh }} fresh</h3>
+      <h3>{{ fruit.quantity }} in stock</h3>
       <h4>{{ fruit.price }} L.E</h4>
       <div class="fruit--buttons">
         <Quantity
+          :stock="fruit.quantity"
           :quantity="quantity"
           v-on:increaseQuantity="quantity++"
           v-on:decreaseQuantity="quantity--"
@@ -39,7 +41,7 @@ export default {
         amount: this.quantity,
       };
       if (this.quantity === 0) {
-        window.alert("Please Enter Valid Quantity");
+        this.$store.commit("backdropError", "Please enter valid quantity");
       } else {
         this.$store.dispatch("addToCart", payload);
         this.quantity = 0;
@@ -65,8 +67,10 @@ export default {
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
-  height: 20rem;
-
+  height: 100%;
+  padding: 0 1rem;
+  padding-bottom: 1rem;
+  position: relative;
 
   @media only screen and (max-width: 766px) {
     flex-direction: column;
@@ -94,7 +98,6 @@ export default {
   }
 
   &--details {
-    margin-left: 1rem;
     text-transform: capitalize;
     width: 90%;
 
@@ -122,7 +125,18 @@ export default {
   &--buttons {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 5px;
+
+    @media only screen and (max-width: 500px) {
+      position: static;
+      width: auto;
+      transform: translateX(0);
+      align-items: flex-start;
+    }
 
     button {
       border: none;

@@ -7,7 +7,10 @@ const state = {
     buttonLoading: false,
     cartItems: [],
     cartLoading: false,
-    finalPrice: 0
+    finalPrice: 0,
+    showBackdrop: false,
+    alert: '',
+    errorAlert: ''
 };
 
 const getters = {
@@ -31,6 +34,15 @@ const getters = {
     },
     finalPrice(state){
         return state.finalPrice
+    },
+    backdrop(state){
+        return state.showBackdrop
+    },
+    backdropMessage(state){
+        return state.alert
+    },
+    backdropError(state){
+        return state.errorAlert
     }
 }
 
@@ -38,9 +50,6 @@ const mutations = {
     pushProducts(state, data){
         state.products = data.products;
         state.totalProducts = data.total;
-    },
-    pushToCart(state, data){
-        console.log(data)
     },
     pushCartitems(state, data){
         state.cartItems = data.cartItems;
@@ -54,6 +63,20 @@ const mutations = {
     },
     checkOut(){
         console.log('rerer')
+    },
+    showBackdrop(state, message){
+        state.showBackdrop = true;
+        state.alert = message
+        state.errorAlert = ''
+    },
+    backdropError(state, error){
+        state.showBackdrop = true;
+        state.errorAlert = error
+        state.alert = ''
+    },
+    hideBackdrop(){
+        state.showBackdrop = false
+        state.backdropMessage = '';
     }
 }
 
@@ -75,26 +98,26 @@ const actions = {
             console.log(err.response)
         })
     },
-    addToCart({commit, state}, payload){
+    addToCart({dispatch, commit, state}, payload){
         state.buttonLoading = true;
         axios.put('/client/shop/cart/addProduct', payload)
-        .then(res => {
-            console.log(res);
+        .then(() => {
             state.buttonLoading = false;
-            commit('pushToCart', res.data)
-            window.alert('Product Added Successfully!')
+            dispatch('getCart')
+            const msg = 'Product Added Successfully!'
+            commit('showBackdrop', msg)
         })
         .catch(err => {
             state.buttonLoading = false;
-            console.log(err)
+            console.log(err.response)
         })
     },
     getCart({commit, state}){
         state.cartLoading = true;
         axios.get('/client/shop/getCart')
         .then(res => {
-            console.log(res)
             state.cartLoading = false;
+            console.log(res)
             commit('pushCartitems', res.data)
         })
         .catch(err => {
@@ -111,21 +134,26 @@ const actions = {
             console.log(res)
             commit('deleteFromCart', data)
             document.body.style.cursor = "default"
+            const msg = 'Product deleted Successfully!'
+            commit('showBackdrop', msg)
         })
         .catch(err => {
             console.log(err.response)
             document.body.style.cursor = "default"
         })
     },
-    checkOut({dispatch}, data){
+    checkOut({dispatch, commit}, data){
         axios.post('/client/shop/makeOrder', data)
         .then(res => {
             console.log(res)
             dispatch('getCart')
-            window.alert(res.data.message)
+            const msg = 'Paid Successfully!, check your orders'
+            commit('showBackdrop', msg)
         })
         .catch(err => {
-            console.log(err)
+            console.log(err.response)
+            commit('backdropError', err.response.data.message)
+            dispatch('getCart')
         })
     }
 }

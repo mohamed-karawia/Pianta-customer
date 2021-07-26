@@ -14,29 +14,14 @@
     </div>
     <form @submit.prevent="checkOut">
       <div class="form__group field">
-        <input type="text" class="form__field" placeholder="Name" />
-        <label for="name" class="form__label">Card Holder</label>
-      </div>
-
-      <div class="form__group field">
-        <input
-          class="form__field"
-          type="tel"
-          inputmode="numeric"
-          maxlength="19"
-          placeholder="Please enter valid 19 numbers"
-        />
-        <label for="cardNumber" class="form__label">Card Number</label>
-      </div>
-
-      <div class="form__group field">
         <input
           class="form__field"
           type="text"
           placeholder="City"
           v-model="city"
+          @blur="$v.city.$touch()"
         />
-        <label for="cardNumber" class="form__label">City</label>
+        <label for="city" class="form__label">City</label>
       </div>
 
       <div class="form__group field">
@@ -46,73 +31,82 @@
           inputmode="numeric"
           placeholder="Address"
           v-model="address"
+          @blur="$v.address.$touch()"
         />
-        <label for="cardNumber" class="form__label">Address</label>
+        <label for="address" class="form__label">Address</label>
       </div>
 
-      <div class="form__group field date">
-        <label for="expireDate" class="form__label">Expiry Date</label>
-        <select name="expireMM" id="expireMM" class="form__field">
-          <option value="">Month</option>
-          <option value="01">January</option>
-          <option value="02">February</option>
-          <option value="03">March</option>
-          <option value="04">April</option>
-          <option value="05">May</option>
-          <option value="06">June</option>
-          <option value="07">July</option>
-          <option value="08">August</option>
-          <option value="09">September</option>
-          <option value="10">October</option>
-          <option value="11">November</option>
-          <option value="12">December</option>
-        </select>
-        <select name="expireYY" id="expireYY" class="form__field">
-          <option value="">Year</option>
-          <option value="20">2020</option>
-          <option value="21">2021</option>
-          <option value="22">2022</option>
-          <option value="23">2023</option>
-          <option value="24">2024</option>
-        </select>
-      </div>
-      <div class="form__group field">
-        <input
-          placeholder="Name"
-          class="form__field"
-          type="numbers"
-          name="expiry"
-          id="expiry"
-          maxlength="4"
-        />
-        <label for="ccc" class="form__label">CVV</label>
-      </div>
       <p class="total">Total : {{ total }}L.E</p>
-      <button type="submit">Check Out</button>
+      <stripe-checkout
+        ref="checkoutRef"
+        mode="payment"
+        :pk="publishableKey"
+        :line-items="lineItems"
+        :success-url="successURL"
+        :cancel-url="cancelURL"
+      />
+      <button
+        type="submit"
+        :disabled="
+          $v.$anyError ||
+          city === '' ||
+          address === ''
+        "
+      >
+        Check Out
+      </button>
     </form>
   </div>
 </template>
 
 <script>
+import { required, } from "vuelidate/lib/validators";
+import { StripeCheckout } from "@vue-stripe/vue-stripe";
+
 export default {
-  data(){
+  data() {
     return {
-      city: '',
-      address: ''
-    }
+      city: "",
+      address: "",
+      publishableKey: "pk_test_UumCDWwVtjJavfnMcxkGTqtY00BuBw65Rf",
+      lineItems: [],
+      successURL: ``,
+      cancelURL: "http://localhost:8080/cart",
+    };
   },
   props: {
     total: Number,
+    cartList: Array,
   },
-  methods:{
-    checkOut(){
-      const data = {
+  methods: {
+    checkOut() {
+      /*const data = {
         locationName: this.city,
-        locationAddres: this.address
-      }
-      this.$store.dispatch('checkOut', data)
-    }
-  }
+        locationAddres: this.address,
+      };
+      this.$store.dispatch("checkOut", data);*/
+      this.successURL= `http://localhost:8080/success?city=${this.city}&address=${this.address}`
+      this.cartList.forEach((element) => {
+        this.lineItems.push({
+          price: element.product.stripePrice_id,
+          quantity: element.product.quantity,
+        });
+      });
+      console.log(this.lineItems);
+      this.$refs.checkoutRef.redirectToCheckout();
+    },
+  },
+  components: {
+    StripeCheckout,
+  },
+  validations: {
+    address: {
+      required,
+    },
+    city: {
+      required,
+    },
+  },
 };
 </script>
 
@@ -252,5 +246,16 @@ button {
   padding: 1rem 3rem;
   color: black;
   border-radius: 10px;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: #f5eda9;
+    cursor: unset;
+  }
+}
+
+.error--message {
+  @include errorMessage;
+  margin-top: 1rem;
 }
 </style>

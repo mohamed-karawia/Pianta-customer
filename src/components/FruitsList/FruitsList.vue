@@ -28,8 +28,11 @@ export default {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, 25rem);
+  grid-auto-rows: 20rem;
   grid-column-gap: 20px;
+  row-gap: 20px;
   padding: 1rem;
+  align-items: center;
 
   @media only screen and (max-width: 766px) {
     order: 3;
